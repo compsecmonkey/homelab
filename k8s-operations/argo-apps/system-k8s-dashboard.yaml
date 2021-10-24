@@ -1,0 +1,24 @@
+## System chart for the controlling of longhorn storage provider
+##
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "system-k8s-dashboard"
+  namespace: "argocd"
+spec:
+  destination:
+    name: "in-cluster"
+    namespace: "kube-system"
+  source:
+    path: "k8s-operations/charts/k8s-dashboard"
+    repoURL: 'https://github.com/compsecmonkey/homelab'
+    targetRevision: "HEAD"
+    helm:
+      version: v3
+      valueFiles:
+      - values.yaml
+  project: "default"
+  syncPolicy:
+    syncOptions:
+      - PruneLast=true
+      - CreateNamespace=true
