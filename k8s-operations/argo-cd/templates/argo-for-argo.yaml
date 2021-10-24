@@ -1,0 +1,25 @@
+## Argo For Argo App
+## Sets up an Argo "app" to keep argo up-to-date after the intial bootstrap
+## Any changes checked into main in the /argo-cd directory and associated helm resources will be reflected
+##
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    path: k8s-operations/argo-cd
+    repoURL: 'https://github.com/compsecmonkey/homelab'
+    targetRevision: HEAD
+    helm:
+      version: v3
+      valueFiles:
+      - values.yaml
+  project: default
+  syncPolicy:
+    syncOptions:
+      - PruneLast=true
