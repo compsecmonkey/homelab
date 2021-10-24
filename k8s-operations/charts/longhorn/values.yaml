@@ -1,3 +1,5 @@
 longhorn:
   defaultSettings:
     defaultDataPath: "/data"
+    storageMinimalAvailablePercentage: 10
+
