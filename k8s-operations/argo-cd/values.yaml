@@ -17,7 +17,7 @@ argo-cd:
     ## Annotations applied to all pods
     podAnnotations: {}
     ## Labels applied to all pods
-    podLabels: {}
+    podLabels: {kubernetes.io/arch=amd64}
     imagePullSecrets: [] # Place holder when we have our ECR
     hostAliases: [] # place holder for our dns records when we have it
 
